@@ -12,11 +12,11 @@ const path = require('path');
 // Crear la app de Express
 const app = express();
 
-const authRoutes = require('./routes/auth');
+const authRoutes = require('../routes/auth');
 
 app.use('/auth', authRoutes);
 
-const shopRoutes = require('./routes/shop');
+const shopRoutes = require('../routes/shop');
 app.use('/api', shopRoutes);
 
 

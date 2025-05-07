@@ -23,6 +23,7 @@ console.log(process.env.DB_URI);  // Verifica que la URL esté cargada correctam
 // Rutas de autenticación (aquí usas la variable authRoutes)
 app.use('/auth', authRoutes);  //
 
+const port = 5000; // Cambia el puerto si es necesario
 // Conexión a la base de datos
 mongoose.connect(process.env.DB_URI)
   .then(() => {
