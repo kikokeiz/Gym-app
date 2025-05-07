@@ -45,7 +45,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 // Obtener productos
-router.get('/products', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);

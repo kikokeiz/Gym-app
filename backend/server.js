@@ -21,9 +21,13 @@ app.use('/api', protectedRoutes); // accederás a /api/profile
 const progressRoutes = require('./src/routes/progressRoutes');
 app.use('/api/progress', progressRoutes);
 
-// Configuración de rutas de progreso
+// Configuración de rutas de subscripciones
 const shopRoutes = require('./src/routes/shopRoutes');
 app.use('/api/subscriptions', shopRoutes);
+
+// Configuración de rutas de productos
+const shopRoutes = require('./src/routes/shopRoutes');
+app.use('/api/products', shopRoutes);
 
 // Verificación de la URI de la base de datos
 console.log(process.env.DB_URI);  // Verifica que la URL esté cargada correctamente
