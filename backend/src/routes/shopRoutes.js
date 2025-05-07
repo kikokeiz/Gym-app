@@ -1,8 +1,8 @@
 // routes/shop.js
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/Product');
-const Subscription = require('../models/Subscription');
+const Product = require('../models/products');
+const Subscription = require('../models/subscriptions');
 const auth = require('../middleware/auth');
 
 // Obtener estado de membresía
@@ -16,7 +16,7 @@ router.get('/subscriptions', auth, async (req, res) => {
 });
 
 // Comprar o renovar membresía (30 días)
-router.post('/subscriptions', auth, async (req, res) => {
+router.post('/api/subscriptions', auth, async (req, res) => {
   try {
     const startDate = new Date();
     const endDate = new Date();

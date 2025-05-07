@@ -22,7 +22,7 @@ const progressRoutes = require('./src/routes/progressRoutes');
 app.use('/api/progress', progressRoutes);
 
 // Configuración de rutas de progreso
-const shopRoutes = require('./src/routes/shop');
+const shopRoutes = require('./src/routes/shopRoutes');
 app.use('/api/subscriptions', shopRoutes);
 
 // Verificación de la URI de la base de datos
