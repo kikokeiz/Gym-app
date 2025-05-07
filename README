@@ -1,0 +1,61 @@
+# 🏋️‍♂️ Gym App - Backend
+
+**Gym App** es una aplicación de gestión de gimnasio que permite a los usuarios registrarse, iniciar sesión, registrar entrenamientos, hacer seguimiento de su progreso físico, gestionar membresías y comprar productos.
+
+Este repositorio contiene el **backend** de la aplicación, desarrollado con **Node.js**, **Express** y **MongoDB**.
+
+---
+
+## 📁 Estructura del proyecto
+
+/backend
+├── controllers/
+├── models/
+├── routes/
+├── middlewares/
+├── .env
+├── server.js
+└── package.json
+
+
+---
+
+## 🚀 Funcionalidades principales
+
+- Registro e inicio de sesión de usuarios con JWT
+- Registro y consulta de entrenamientos (workouts)
+- Registro y consulta de progreso físico
+- Consulta de estado de membresía
+- Catálogo y compra de productos
+- Middleware de autenticación
+- MongoDB Atlas o local
+
+---
+
+## 🧰 Tecnologías utilizadas
+
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- JSON Web Tokens (JWT)
+- Bcrypt
+- CORS
+- Dotenv
+
+---
+
+## ⚙️ Instalación y ejecución
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/kikokeiz/Gym-app.git
+cd Gym-app/backend
+
+# Instalar dependencias
+npm install
+
+# Crear archivo de variables de entorno
+touch .env
+
+# Ejecutar servidor
+npm start
