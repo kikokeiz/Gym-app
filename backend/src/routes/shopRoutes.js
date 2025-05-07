@@ -6,7 +6,7 @@ const Subscription = require('../models/subscriptions');
 const auth = require('../middleware/auth');
 
 // Obtener estado de membresía
-router.get('/subscriptions', auth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
     const subscription = await Subscription.findOne({ user: req.user.id });
     res.json(subscription || { status: 'inactive' });
@@ -16,7 +16,7 @@ router.get('/subscriptions', auth, async (req, res) => {
 });
 
 // Comprar o renovar membresía (30 días)
-router.post('/api/subscriptions', auth, async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
     const startDate = new Date();
     const endDate = new Date();
