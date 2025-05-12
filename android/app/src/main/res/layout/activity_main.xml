@@ -7,9 +7,9 @@
 
     <!-- Ejemplo: Añade un TextView -->
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="¡Hola GymApp!"
-        android:layout_gravity="center"/>
+        android:layout_width="115dp"
+        android:layout_height="73dp"
+        android:layout_gravity="center"
+        android:text="¡Hola GymApp!" />
 
 </LinearLayout>

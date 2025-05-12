@@ -7,6 +7,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun RegisterScreen(navController: NavHostController) {
@@ -31,3 +33,11 @@ fun RegisterScreen(navController: NavHostController) {
             }
         }
     }}
+@Preview(showBackground = true)
+@Composable
+fun RegisterScreenPreview() {
+    // Necesitarás un tema Material para la vista previa
+    MaterialTheme {
+        RegisterScreen(rememberNavController())
+    }
+}
