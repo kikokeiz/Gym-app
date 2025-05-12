@@ -18,14 +18,16 @@ fun RegisterScreen(navController: NavHostController) {
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Pantalla de Registro", style = MaterialTheme.typography.headlineMedium)
+            Text(
+                text = "Pantalla de Registro",
+                style = MaterialTheme.typography.headlineMedium
+            )
             Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = {
-                // Puedes usar navController para navegar de regreso
-                // navController.popBackStack()
+                // Navega de regreso al login
+                navController.navigate("login")
             }) {
-                Text("Volver al Login")
+                Text("Ir al Login")
             }
         }
-    }
-}
+    }}

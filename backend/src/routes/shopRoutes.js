@@ -16,7 +16,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // Comprar o renovar membresía (30 días)
-router.post('/', auth, async (req, res) => {
+router.post('/subscriptions', auth, async (req, res) => {
   try {
     const startDate = new Date();
     const endDate = new Date();
