@@ -9,8 +9,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
 @Composable
-fun RegisterScreen(navController: NavHostController) {
-    // UI de registro
+fun LoginScreen(navController: NavHostController) {
+    // Interfaz de usuario simple de login
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -18,13 +18,13 @@ fun RegisterScreen(navController: NavHostController) {
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Pantalla de Registro", style = MaterialTheme.typography.headlineMedium)
+            Text(text = "Pantalla de Inicio de Sesión", style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = {
-                // Puedes usar navController para navegar de regreso
-                // navController.popBackStack()
+                // Aquí puedes hacer navegación, por ejemplo:
+                // navController.navigate("register")
             }) {
-                Text("Volver al Login")
+                Text("Ir a Registro")
             }
         }
     }
