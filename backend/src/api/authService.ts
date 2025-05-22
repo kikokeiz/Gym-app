@@ -1,7 +1,7 @@
 // src/api/authService.ts
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/auth'; // Ajusta según tu backend
+const API_URL = 'http://localhost:5000/api/auth'; // Ajusta según tu backend
 
 export const authService = {
   async login(email: string, password: string) {

@@ -56,30 +56,36 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
-    // Compose BOM (Bill of Materials)
+    // Compose BOM (Bill of Materials) - usa solo una vez
     implementation(platform(libs.androidx.compose.bom))
 
-    // Dependencias UI de Compose
+    // Dependencias UI de Compose (versiones gestionadas por el BOM)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.ui.util)
+    implementation(libs.androidx.runtime.livedata)
 
-    // Dependencias específicas adicionales
-    implementation("androidx.compose.material3:material3:1.2.0")
-    implementation("androidx.compose.material:material-icons-extended:1.6.0")
-    implementation("androidx.navigation:navigation-compose:2.7.6")
-    implementation("androidx.compose.foundation:foundation:1.6.0")
-    implementation("androidx.compose.ui:ui-util:1.6.0")
+    // Navegación
+    implementation(libs.androidx.navigation.compose)
 
-    // Dependencias para testing
+    // LiveData
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    implementation (libs.androidx.navigation.compose.v275)
+    implementation (libs.runtime.livedata)
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
-    // Dependencias de debug
+    // Debug
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }

@@ -11,10 +11,14 @@ import com.frandu.gymapp.screens.RegisterScreen
 fun GymNavGraph(navController: NavHostController) {
     NavHost(navController, startDestination = "login") {
         composable("login") {
-            LoginScreen(navController)
+            LoginScreen(navController) {
+                navController.navigate(Routes.REGISTER)
+            }
         }
         composable("register") {
-            RegisterScreen(navController)
+            RegisterScreen(navController) {
+                navController.popBackStack()
+            }
         }
     }
 }
