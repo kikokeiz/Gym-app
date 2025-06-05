@@ -1,0 +1,183 @@
+# 🏋️‍♂️ Gym App - Backend
+
+**Gym App** es una aplicación de gestión de gimnasio que permite a los usuarios registrarse, iniciar sesión, registrar entrenamientos, hacer seguimiento de su progreso físico, gestionar membresías y comprar productos.
+
+---
+
+## 📁 Estructura del proyecto
+
+/backend
+├── controllers/
+├── models/
+├── routes/
+├── middlewares/
+├── .env
+├── server.js
+└── package.json
+
+
+---
+
+## 🚀 Funcionalidades principales
+
+- Registro e inicio de sesión de usuarios con JWT
+- Registro y consulta de entrenamientos (workouts)
+- Registro y consulta de progreso físico
+- Consulta de estado de membresía
+- Catálogo y compra de productos
+- Middleware de autenticación
+- MongoDB Atlas o local
+
+---
+
+## 🧰 Tecnologías utilizadas
+
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- JSON Web Tokens (JWT)
+- Bcrypt
+- CORS
+- Dotenv
+
+---
+
+## ⚙️ Instalación y ejecución
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/kikokeiz/Gym-app.git
+cd Gym-app/backend
+
+# Instalar dependencias
+npm install
+
+# Crear archivo de variables de entorno
+touch .env
+
+# Ejecutar servidor
+npm start
+
+
+## 🛠️ Proceso de Desarrollo
+
+Este proyecto fue realizado como Trabajo de Fin de Ciclo (TFC) del ciclo formativo de **Desarrollo de Aplicaciones Multiplataforma (DAM)**. El objetivo fue construir una aplicación completa para la gestión de un gimnasio, que ofreciera funcionalidades tanto para los usuarios (entrenamientos, seguimiento, compras) como para los administradores.
+
+---
+
+### 🔧 Elección de Tecnologías
+
+
+#### 🔹 Backend (Servidor y API REST)
+
+Para el desarrollo del backend opté por **Node.js** junto con el framework **Express.js**, una combinación moderna y eficiente para la creación de servidores y APIs REST. Las principales razones para esta elección fueron:
+
+- Facilidad y rapidez para levantar un servidor.
+- Amplia comunidad y documentación.
+- Capacidad de crear APIs escalables y modulares.
+
+Como base de datos, utilicé **MongoDB**, una base de datos NoSQL que me permitió:
+
+- Almacenar información en un formato similar a JSON (documentos BSON).
+- Trabajar de forma flexible con colecciones dinámicas.
+- Implementar de forma sencilla relaciones entre usuarios, entrenamientos, productos, etc.
+
+Para la autenticación y seguridad:
+
+- **JWT (JSON Web Tokens)** me permitió crear sesiones seguras sin necesidad de mantener el estado en el servidor.
+- **bcryptjs** fue utilizado para cifrar contraseñas antes de almacenarlas.
+- **dotenv** ayudó a mantener configuraciones sensibles (como claves y conexiones) fuera del código fuente.
+
+
+
+#### 🔹 Frontend (Aplicación Android)
+
+Para la aplicación móvil, desarrollada para Android, elegí **Kotlin** como lenguaje de programación, combinado con **Jetpack Compose**, una moderna herramienta de creación de interfaces declarativas.
+
+Motivos de esta elección:
+
+- Kotlin es más moderno y seguro que Java, y es oficialmente soportado por Google.
+- Jetpack Compose permite crear interfaces más limpias y mantenibles con menos código.
+- La estructura declarativa facilita la adaptación a diferentes pantallas y estados visuales.
+
+Además, utilicé:
+
+- **Retrofit** para hacer peticiones HTTP hacia el backend.
+- **Room** para almacenar datos localmente, permitiendo cierto grado de funcionalidad offline.
+- **ViewModel** y **LiveData** como parte del patrón **MVVM**, facilitando la separación entre lógica de negocio y la interfaz.
+
+
+
+#### 🔹 Herramientas Complementarias
+
+- **Postman** para probar los endpoints de la API durante el desarrollo.
+- **MongoDB Atlas** para desplegar la base de datos en la nube.
+- **Git y GitHub** para control de versiones y colaboración.
+- **Android Studio** como entorno principal de desarrollo de la app.
+
+---
+
+### ⚙️ Desarrollo del Proyecto
+
+
+#### 📦 Backend
+
+Comencé desarrollando la API RESTful. Seguí el patrón de arquitectura **MVC** (Modelo - Vista - Controlador) para mantener el código organizado.
+
+1. **Modelos**: definí esquemas de Mongoose para usuarios, entrenamientos, productos y membresías.
+2. **Controladores**: cada uno maneja la lógica correspondiente a su ruta (crear, leer, actualizar, eliminar datos).
+3. **Rutas**: expuse endpoints con rutas protegidas (requieren JWT) y otras públicas (como login y registro).
+4. **Middlewares**: implementé middlewares personalizados como `authMiddleware` para verificar el token en las rutas privadas.
+
+Las pruebas de los endpoints las realicé con Postman, validando tanto casos de éxito como errores.
+
+
+
+#### 📱 Frontend
+
+Una vez funcionando la API, empecé el desarrollo de la app Android.
+
+- Utilicé **MVVM** para mantener una separación clara entre interfaz (View), lógica de negocio (ViewModel) y acceso a datos (Repository).
+- Cada pantalla (inicio de sesión, registro, ejercicios, productos, perfil) fue creada con Jetpack Compose.
+- Usé **Retrofit** para la comunicación con el backend y configuré el envío automático del token JWT con cada petición.
+- Utilicé **Room** para guardar localmente el historial de ejercicios, permitiendo ver el progreso incluso sin conexión.
+
+
+
+#### 🔄 Integración Frontend - Backend
+
+La conexión entre la app y el backend se realiza mediante peticiones HTTP con JSON. Algunas medidas tomadas fueron:
+
+- Almacenamiento del token JWT de forma segura para sesiones persistentes.
+- Manejo de errores y mensajes claros al usuario si la sesión expiró, si hubo errores de red, o si los datos ingresados eran incorrectos.
+- Sincronización de datos entre el dispositivo y el servidor, actualizando la base de datos tras cada acción del usuario.
+
+---
+
+### 🔐 Seguridad y Buenas Prácticas
+
+- Uso de **bcrypt** para almacenar contraseñas de forma segura.
+- Uso de **JWT** para proteger rutas sensibles mediante autenticación basada en tokens.
+- Separación de variables sensibles con `dotenv`.
+- Validación básica en formularios (puede mejorarse en futuras versiones).
+- Organización modular del código para facilitar mantenimiento y escalabilidad.
+
+---
+
+### 📚 Conclusión y Aprendizajes
+
+Este proyecto me permitió aplicar y reforzar muchos conceptos clave aprendidos durante el ciclo formativo, como:
+
+- Desarrollo de APIs RESTful desde cero.
+- Autenticación segura con JWT.
+- Arquitectura limpia y patrones como MVC (backend) y MVVM (frontend).
+- Comunicación entre aplicaciones móviles y servicios web.
+- Uso de tecnologías actuales del ecosistema Android como Jetpack Compose y Room.
+
+Además, enfrenté y solucioné desafíos reales de desarrollo como:
+
+- Gestión del estado y sincronización de datos.
+- Validación de formularios y manejo de errores.
+- Problemas con la comunicación entre emulador y backend local.
+
+El resultado es una aplicación funcional y escalable que puede evolucionar fácilmente con nuevas funcionalidades en el futuro.
