@@ -7,13 +7,51 @@
 ## 📁 Estructura del proyecto
 
 /backend
-├── controllers/
-├── models/
-├── routes/
-├── middlewares/
-├── .env
-├── server.js
-└── package.json
+├── api/
+│   └── authService
+
+├── controllers/                 # Lógica de negocio para cada ruta
+│   ├── authController.js        # Registro, login, validación de token
+│   └── progressController.js    # CRUD de progreso del usuario
+│
+├── models/                      # Definición de esquemas de MongoDB (Mongoose)
+│   ├── User.js                  # Modelo de usuario
+│   └── Progress.js              # Modelo de progreso (reps, peso, etc.)
+│
+├── routes/                      # Define las rutas de la API
+│   ├── authRoutes.js            # /api/auth (registro, login)
+│   └── progressRoutes.js        # /api/progress (progreso del entrenamiento)
+│   └── protectedRoutes.js       
+│   └── shopRoutes.js            # /api/progress (ruta de tienda)
+│   └── workoutRoutes.js         # /api/progress (ruta de datos de entrenamiento)
+|
+├── middlewares/                 # Funciones middleware reutilizables
+│   └── auth.js                  # Verifica JWT y protege rutas privadas
+│
+├── config/
+│   └── db.js                    # Conexión a MongoDB con mongoose
+│
+├── .env                         # Variables de entorno (JWT_SECRET, MONGO_URI, PORT)
+├── .gitignore                   # Ignora node_modules, .env, etc.
+├── server.js                    # Punto de entrada de la aplicación Express
+├── package.json
+└── README.md                    # Documentación inicial del backend
+
+
+/frontend
+├── public/
+│   └── index.html
+├── src/
+│   ├── assets/              # Imágenes, logos, fuentes
+│   ├── components/          # Componentes reutilizables (Botones, Cards, Layouts, etc.)
+│   ├── pages/               # Páginas completas como Home, Login, TrackingPage
+│   ├── services/            # Lógica de llamadas a la API (axios)
+│   ├── App.tsx              # Componente raíz
+│   ├── main.tsx             # Punto de entrada (ReactDOM.createRoot)
+│   └── vite.config.ts       
+├── tsconfig.json
+├── package.json
+└── .env
 
 
 ---
@@ -22,11 +60,7 @@
 
 - Registro e inicio de sesión de usuarios con JWT
 - Registro y consulta de entrenamientos (workouts)
-- Registro y consulta de progreso físico
-- Consulta de estado de membresía
 - Catálogo y compra de productos
-- Middleware de autenticación
-- MongoDB Atlas o local
 
 ---
 
@@ -42,23 +76,6 @@
 
 ---
 
-## ⚙️ Instalación y ejecución
-
-```bash
-# Clonar el repositorio
-git clone https://github.com/kikokeiz/Gym-app.git
-cd Gym-app/backend
-
-# Instalar dependencias
-npm install
-
-# Crear archivo de variables de entorno
-touch .env
-
-# Ejecutar servidor
-npm start
-
-
 ## 🛠️ Proceso de Desarrollo
 
 Este proyecto fue realizado como Trabajo de Fin de Ciclo (TFC) del ciclo formativo de **Desarrollo de Aplicaciones Multiplataforma (DAM)**. El objetivo fue construir una aplicación completa para la gestión de un gimnasio, que ofreciera funcionalidades tanto para los usuarios (entrenamientos, seguimiento, compras) como para los administradores.
@@ -66,7 +83,6 @@ Este proyecto fue realizado como Trabajo de Fin de Ciclo (TFC) del ciclo formati
 ---
 
 ### 🔧 Elección de Tecnologías
-
 
 #### 🔹 Backend (Servidor y API REST)
 
@@ -88,8 +104,6 @@ Para la autenticación y seguridad:
 - **bcryptjs** fue utilizado para cifrar contraseñas antes de almacenarlas.
 - **dotenv** ayudó a mantener configuraciones sensibles (como claves y conexiones) fuera del código fuente.
 
-
-
 #### 🔹 Frontend (Aplicación Android)
 
 Para la aplicación móvil, desarrollada para Android, elegí **Kotlin** como lenguaje de programación, combinado con **Jetpack Compose**, una moderna herramienta de creación de interfaces declarativas.
@@ -106,7 +120,7 @@ Además, utilicé:
 - **Room** para almacenar datos localmente, permitiendo cierto grado de funcionalidad offline.
 - **ViewModel** y **LiveData** como parte del patrón **MVVM**, facilitando la separación entre lógica de negocio y la interfaz.
 
-
+  Esta sin terminar debido a su complejidad.
 
 #### 🔹 Herramientas Complementarias
 
@@ -119,7 +133,6 @@ Además, utilicé:
 
 ### ⚙️ Desarrollo del Proyecto
 
-
 #### 📦 Backend
 
 Comencé desarrollando la API RESTful. Seguí el patrón de arquitectura **MVC** (Modelo - Vista - Controlador) para mantener el código organizado.
@@ -131,8 +144,6 @@ Comencé desarrollando la API RESTful. Seguí el patrón de arquitectura **MVC**
 
 Las pruebas de los endpoints las realicé con Postman, validando tanto casos de éxito como errores.
 
-
-
 #### 📱 Frontend
 
 Una vez funcionando la API, empecé el desarrollo de la app Android.
@@ -141,8 +152,6 @@ Una vez funcionando la API, empecé el desarrollo de la app Android.
 - Cada pantalla (inicio de sesión, registro, ejercicios, productos, perfil) fue creada con Jetpack Compose.
 - Usé **Retrofit** para la comunicación con el backend y configuré el envío automático del token JWT con cada petición.
 - Utilicé **Room** para guardar localmente el historial de ejercicios, permitiendo ver el progreso incluso sin conexión.
-
-
 
 #### 🔄 Integración Frontend - Backend
 
@@ -181,3 +190,35 @@ Además, enfrenté y solucioné desafíos reales de desarrollo como:
 - Problemas con la comunicación entre emulador y backend local.
 
 El resultado es una aplicación funcional y escalable que puede evolucionar fácilmente con nuevas funcionalidades en el futuro.
+
+## 🚀 Cómo iniciar el proyecto (Backend)
+
+### 📝 Requisitos previos
+
+Antes de empezar, asegúrate de tener instalados en tu equipo:
+
+- **Node.js** (versión 14 o superior recomendada)  
+  Puedes descargarlo desde [nodejs.org](https://nodejs.org/)
+- **npm** (viene incluido con Node.js)
+- **MongoDB** (puedes usar MongoDB local o una instancia en la nube como MongoDB Atlas)
+- Un editor de código (por ejemplo, Visual Studio Code)
+
+---
+
+### 🔧 Pasos para iniciar el servidor backend y frontend
+
+1. **Clona el repositorio**
+
+   git clone https://github.com/kikokeiz/Gym-app.git
+
+2. **Instalar dependecias**
+
+   npm install
+
+3. **Inicciar servidor backend**
+
+   node server.js
+
+4. **Iniciar servidor frontend**
+
+   npm run dev

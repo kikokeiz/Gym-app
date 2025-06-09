@@ -1,34 +1,33 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middleware/auth');
+const auth = require('../middleware/auth'); // Middleware para proteger rutas
 const Progress = require('../models/progress');
 
-// Crear nuevo progreso
-router.post('/', auth, async (req, res) => {
+// GET progreso del usuario
+router.get('/', auth, async (req, res) => {
   try {
-    const { exercise, weight, reps } = req.body;
-
-    const newProgress = new Progress({
-      user: req.user.id,
-      exercise,
-      weight,
-      reps
-    });
-
-    await newProgress.save();
-    res.status(201).json({ msg: 'Progreso guardado', progress: newProgress });
-  } catch (err) {
-    res.status(500).json({ msg: 'Error al guardar progreso' });
+    const progressData = await Progress.find({ user: req.user.id }).sort({ date: -1 });
+    res.json(progressData);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener progreso' });
   }
 });
 
-// Obtener todos los progresos del usuario
-router.get('/', auth, async (req, res) => {
+// POST nuevo progreso
+router.post('/', auth, async (req, res) => {
+  const { weight, reps, exercise, date } = req.body;
   try {
-    const progresses = await Progress.find({ user: req.user.id }).sort({ date: -1 });
-    res.json(progresses);
-  } catch (err) {
-    res.status(500).json({ msg: 'Error al obtener progresos' });
+    const newProgress = new Progress({
+      user: req.user.id,
+      weight,
+      reps,
+      exercise,
+      date: date || Date.now()
+    });
+    const savedProgress = await newProgress.save();
+    res.status(201).json(savedProgress);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al guardar progreso' });
   }
 });
 

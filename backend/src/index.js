@@ -14,8 +14,8 @@ app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 app.use('/workouts', workoutRoutes);
 
 // Importar rutas (ajusta las rutas según tu estructura real)
-const authRoutes = require('./routes/auth');
-const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/authRoutes');
+const shopRoutes = require('./routes/shopRoutes');
 
 // Usar rutas
 app.use('/auth', authRoutes);
